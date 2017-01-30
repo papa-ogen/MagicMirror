@@ -1,0 +1,19 @@
+{
+  "name": "MagicMirror",
+  "version": "0.1.0",
+  "description": "Raspberry Pi project",
+  "author": "Jörgen Thelin",
+  "url": "https://github.com/papa-ogen/MagicMirror",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/papa-ogen/magicmirror.git"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-typescript": "^0.8.0"
+  }
+}
