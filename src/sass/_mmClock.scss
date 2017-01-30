@@ -1,0 +1,35 @@
+.mm-clock {
+  text-align: center;
+  justify-content: center;
+
+  & > .mmClock-time {
+    display: flex;
+    justify-content: center;
+    font-size: 5rem;
+    line-height: 1;
+
+    & > .mmClock-divider {
+      animation: colorfade 1s linear infinite alternate;
+    }
+  }
+
+  & > .mmClock-date {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  & > .mmClock-names {
+
+  }
+}
+
+.mm-clock span {
+	font-size: 0.7em;
+}
+
+@keyframes colorfade {
+    from {color: #fff;}
+    to {color: #666;}
+}
