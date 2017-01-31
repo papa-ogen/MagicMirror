@@ -2,7 +2,7 @@
   text-align: center;
   justify-content: center;
 
-  & > .mmClock-time {
+  & > time {
     display: flex;
     justify-content: center;
     font-size: 5rem;
@@ -13,20 +13,17 @@
     }
   }
 
-  & > .mmClock-date {
+  & > h3 {
     display: flex;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin: 0;
     line-height: 1;
   }
 
-  & > .mmClock-names {
-
+  & > h4 {
+    margin: 0.5rem;
   }
-}
-
-.mm-clock span {
-	font-size: 0.7em;
 }
 
 @keyframes colorfade {

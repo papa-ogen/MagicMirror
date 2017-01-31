@@ -1,15 +1,7 @@
 @import "_colors.scss";
-@import "_milligram.scss";
-@import "_normalize.scss";
+@import "_base.scss";
 
 // Modules
 @import "_mmWeather.scss";
 @import "_mmclock.scss";
-
-
-body {
-  background: $black;
-  color: $white;
-  padding: 2rem 3rem;
-}
 

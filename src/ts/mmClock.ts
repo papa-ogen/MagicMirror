@@ -1,1 +1,3 @@
-var mmClock = "mmClock";
+(function(config) {
+
+})(mmConfig);

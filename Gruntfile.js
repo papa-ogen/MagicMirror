@@ -5,10 +5,9 @@ module.exports = function(grunt) {
     connect: {
         server: {
         options: {
-            port: 8000,
-            livereload: true
+            port: 8000
         },
-        }
+      }
     },  
     sass: {                              
     dist: {                            
@@ -20,6 +19,17 @@ module.exports = function(grunt) {
       }
     }
   },
+  cssmin: {
+    target: {
+      files: [{
+        expand: true,
+        cwd: "dist/css",
+        src: ["*.css", "!*.min.css"],
+        dest: "dist/css",
+        ext: ".min.css"
+      }]
+    }
+  },   
   typescript: {
     base: {
       src: ["src/ts/*.ts"],
@@ -43,7 +53,11 @@ module.exports = function(grunt) {
     },
     html: {
         files: ['*.html']    
-    }
+    },
+    minify: {
+        files: "dist/css/*.css",
+        tasks: ["cssmin"]
+    }    
   }
   });
 
@@ -51,8 +65,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-typescript");
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task(s).
-  grunt.registerTask("default", ["connect", "sass", "typescript", "watch"]);
+  grunt.registerTask("default", ["connect", "sass", "typescript", "watch", "cssmin"]);
 
 };

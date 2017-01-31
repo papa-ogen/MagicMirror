@@ -1,2 +1,4 @@
+var mmConfig = {};
 var test = "mmCalendar";
-var mmClock = "mmClock";
+(function (config) {
+})(mmConfig);
