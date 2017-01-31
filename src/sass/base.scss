@@ -1,0 +1,12 @@
+$font-stack: 'Fjalla One', sans-serif;
+
+body {
+  background: $black;
+  color: $white;
+  font-family: $font-stack;
+  margin-top: 2rem;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Roboto', sans-serif;
+}

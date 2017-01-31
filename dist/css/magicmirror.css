@@ -1,94 +1,12 @@
 body {
   background: #000;
   color: #fff;
+  font-family: "Fjalla One", sans-serif;
+  margin-top: 2rem;
 }
 
-.mm-weather {
-  position: relative;
-  text-align: right;
-}
-
-.mm-weather > div {
-  width: 160px;
-  float: right;
-  text-align: center;
-}
-
-.mm-weather ul {
-  width: 100%;
-  text-align: center;
-}
-
-.mm-weather ul li {
-  display: inline;
-}
-
-.mm-weather-type {
-  line-height: 50px;
-}
-
-.mm-weather-descr {
-  font-size: 0.9em;
-}
-
-.mm-weather-icon {
-  margin-top: 7px;
-  margin-right: 14px;
-}
-
-.mm-weather-icon-sun {
-  background: url("../img/weather-icons.jpg") no-repeat -80px -16px;
-  width: 48px;
-  height: 48px;
-  margin-top: auto;
-}
-
-.mm-weather-icon-few-cloud {
-  background: url("../img/weather-icons.jpg") no-repeat -80px -88px;
-  width: 56px;
-  height: 56px;
-}
-
-.mm-weather-icon-cloud {
-  background: url("../img/weather-icons.jpg") no-repeat -80px -168px;
-  width: 56px;
-  height: 32px;
-}
-
-.mm-weather-icon-broken-cloud {
-  background: url("../img/weather-icons.jpg") no-repeat -440px -24px;
-  width: 56px;
-  height: 40px;
-}
-
-.mm-weather-icon-shower-rain {
-  background: url("../img/weather-icons.jpg") no-repeat -80px -232px;
-  width: 56px;
-  height: 48px;
-}
-
-.mm-weather-icon-rain {
-  background: url("../img/weather-icons.jpg") no-repeat -368px -160px;
-  width: 56px;
-  height: 48px;
-}
-
-.mm-weather-icon-thunderstorm {
-  background: url("../img/weather-icons.jpg") no-repeat -440px -160px;
-  width: 56px;
-  height: 48px;
-}
-
-.mm-weather-icon-snow {
-  background: url("../img/weather-icons.jpg") no-repeat -296px -232px;
-  width: 56px;
-  height: 56px;
-}
-
-.mm-weather-icon-mist {
-  background: url("../img/weather-icons.jpg") no-repeat -16px -168px;
-  width: 32px;
-  height: 32px;
+h1, h2, h3, h4 {
+  font-family: 'Roboto', sans-serif;
 }
 
 .mm-clock {
@@ -120,7 +38,7 @@ body {
     color: #fff;
   }
   to {
-    color: #666;
+    color: #000;
   }
 }
 

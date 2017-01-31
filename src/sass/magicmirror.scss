@@ -1,7 +1,6 @@
-@import "_colors.scss";
-@import "_base.scss";
+@import "colors";
+@import "base";
 
 // Modules
-@import "_mmWeather.scss";
-@import "_mmclock.scss";
-
+// @import mmWeather
+@import "mmclock";
