@@ -1,11 +1,11 @@
-namespace mmClock {
+(function(){
     class Clock {
-        Time() {
+        setTime() {
             var d = new Date();
             var hours = d.getHours().toString();
             var minutes = d.getMinutes().toString();
             
-            setTimeout(() => { this.Time(); }, 1000);
+            setTimeout(() => { this.setTime(); }, 1000);
             
             if (hours.length === 1) {
                 hours = "0" + hours;
@@ -21,13 +21,9 @@ namespace mmClock {
     }
 
     class WeekDay {
-        weekDays: string[] = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Saturday", "Sunday"];
-        weekDay: string;
-
-        constructor() {
-            let d = new Date();
-            let weekDay = d.getDay();
-            this.weekDay = this.weekDays[weekDay];
+        constructor(d = new Date()) {
+            this.weekDays = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Saturday", "Sunday"];
+            this.weekDay = this.weekDays[d.getDay()];
         }
 
         getWeekDay() {
@@ -36,12 +32,9 @@ namespace mmClock {
     }
 
     class MonthDate {
-        months: string[] = ["Januari", "Februari", "Mars", "April", "Maj", "Juni",
+        constructor(d) {
+            this.months = ["Januari", "Februari", "Mars", "April", "Maj", "Juni",
         "Juli", "Augusti", "September", "Oktober", "November", "December"];
-        currentMonth: number;
-        currentDate: number;
-
-        constructor(d: Date) {
             this.currentMonth = d.getMonth();
             this.currentDate = d.getDate();
 
@@ -53,9 +46,6 @@ namespace mmClock {
     }
 
     class Names {
-        apiUrl: string;
-        updateInterval: number;
-        
         constructor(helper) {
             this.apiUrl = helper.apiUrl + '?nocache=' + (new Date()).getTime();
             this.updateInterval = helper.updateInterval
@@ -83,7 +73,6 @@ namespace mmClock {
                 if (err != null) {
                     console.log("Something went wrong: " + err);
                 } else {
-                    console.log(data);
                     document.querySelector(".mm-names").textContent = data.dagar[0].namnsdag.join(", ");
                 }
             });
@@ -92,15 +81,14 @@ namespace mmClock {
         }
     }
 
-    var clock = new Clock();
-    clock.Time();
+    let clock = new Clock();
+    clock.setTime();
 
-    var weekday = new WeekDay();
-
-    var curDate = new MonthDate(new Date());
+    let weekday = new WeekDay();
+    let curDate = new MonthDate(new Date());
 
     document.querySelector(".mm-datetime").textContent = weekday.getWeekDay() + ", " + curDate.getCurrentDate();
 
-    var names = new Names(mmHelper.mmClock);
+    let names = new Names(mmHelper.mmClock);
     names.addNames();
-}
+})();
