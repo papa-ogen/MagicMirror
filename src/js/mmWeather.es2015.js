@@ -133,6 +133,7 @@
 
 		cssContainer.html = "";
         var ul = cssContainer.getElementsByTagName("ul")[0];
+        ul.innerHTML = "";
         var df = document.createDocumentFragment();
 
 		if(mmHelper.foreCast === true) {
@@ -148,9 +149,15 @@
 				cssContainer.append("<hr class=\"mm-clear\" />");
 			}
 		} else {
-            createLi(cssContainer, "", currentWeather.name + " " + currentWeather.temp + " C°");
-            createLi(cssContainer, weatherIconClass(currentWeather.icon) + " mm-weather-icon mm-right", currentWeather.name + " " + currentWeather.temp + " C°");
-            createLi(cssContainer, "mm-weather-type", weatherType(currentWeather.weather));
+            createLi(ul, "", currentWeather.name + " " + currentWeather.temp + " C°");
+
+            var div = document.createElement("div");
+            div.classList = weatherIconClass(currentWeather.icon) + " mm-weather-icon mm-right";
+            var li = document.createElement("li");
+            li.appendChild(div);
+            ul.appendChild(li);
+
+            createLi(ul, "mm-weather-type", weatherType(currentWeather.weather));
 				// ul.append("<li>" + currentWeather.name + " " + currentWeather.temp + " C°</li>");
 				// ul.append("<li><div class=\"" + weatherIconClass(currentWeather.icon) + " mm-weather-icon mm-right\"></div></li>");
 				// ul.append("<li class=\"mm-weather-type\">" + weatherType(currentWeather.weather).capitalizeFirstLetter() + "</li>");
@@ -160,7 +167,7 @@
 
     function createLi(parent, cssClass, text) {
 
-        var li = document.createElement(li);
+        var li = document.createElement("li");
         var t = document.createTextNode(text);
         li.classList = cssClass;
 
