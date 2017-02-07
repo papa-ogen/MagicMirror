@@ -1,4 +1,4 @@
-(function(){
+(function(mm){
     class Clock {
         setTime() {
             var d = new Date();
@@ -51,25 +51,8 @@
             this.updateInterval = helper.updateInterval
         }
 
-        getJSON(callback) {
-            var xhr = new XMLHttpRequest();
-
-            xhr.open("get", this.apiUrl, true);
-            xhr.responseType = "json";
-            xhr.onload = function() {
-                var status = xhr.status;
-                if (status == 200) {
-                    callback(null, xhr.response);
-                } else {
-                    callback(status);
-                }
-            };
-
-            xhr.send();
-        }
-
         addNames() {
-            this.getJSON(function(err, data) {
+            mm.getJSON(this.apiUrl, function(err, data) {
                 if (err != null) {
                     console.log("Something went wrong: " + err);
                 } else {
@@ -89,6 +72,7 @@
 
     document.querySelector(".mm-datetime").textContent = weekday.getWeekDay() + ", " + curDate.getCurrentDate();
 
-    let names = new Names(mmHelper.mmClock);
+    let names = new Names(mm.mmClock);
     names.addNames();
-})();
+
+})(mmHelper);

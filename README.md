@@ -3,8 +3,18 @@
 ## Demo
 Go to http://mm.craven-studio.com/
 
-Json Config File
+## Config
+Create a local config file in data/config.js
 ```javascript
+var mmConfig = {
+    mmWeather: {
+        apiKey: "",
+		lat: "59.3833",
+		long: "17.8333",
+		updateInterval: 60000,
+		foreCast: true
+    }
+};
 ```
 
 ## Modules

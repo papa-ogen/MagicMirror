@@ -4,7 +4,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-(function () {
+(function (mm) {
     var Clock = function () {
         function Clock() {
             _classCallCheck(this, Clock);
@@ -87,29 +87,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
 
         _createClass(Names, [{
-            key: "getJSON",
-            value: function getJSON(callback) {
-                var xhr = new XMLHttpRequest();
-
-                xhr.open("get", this.apiUrl, true);
-                xhr.responseType = "json";
-                xhr.onload = function () {
-                    var status = xhr.status;
-                    if (status == 200) {
-                        callback(null, xhr.response);
-                    } else {
-                        callback(status);
-                    }
-                };
-
-                xhr.send();
-            }
-        }, {
             key: "addNames",
             value: function addNames() {
                 var _this2 = this;
 
-                this.getJSON(function (err, data) {
+                mm.getJSON(this.apiUrl, function (err, data) {
                     if (err != null) {
                         console.log("Something went wrong: " + err);
                     } else {
@@ -134,7 +116,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     document.querySelector(".mm-datetime").textContent = weekday.getWeekDay() + ", " + curDate.getCurrentDate();
 
-    var names = new Names(mmHelper.mmClock);
+    var names = new Names(mm.mmClock);
     names.addNames();
-})();
+})(mmHelper);
 //# sourceMappingURL=mmClock.js.map

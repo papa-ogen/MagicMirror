@@ -2,9 +2,9 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-(function (mmHelper) {
+(function (mm) {
 	var cssContainer = document.querySelector(".mm-weather");
-	var mmHelper = mmHelper.mmWeather;
+	var mmHelper = mm.mmWeather;
 
 	var Weather = function Weather(data) {
 		_classCallCheck(this, Weather);
@@ -26,42 +26,41 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 		};
 	};
 
-	var weathers = [];
-	var currentWeather = {};
+	var url = mmHelper.foreCast === true ? mmHelper.forecastUrl : mmHelper.apiUrl;
+	var updateInterval = !mmHelper.updateInterval || mmHelper.updateInterval === "undefined" ? 1080000 : mmHelper.updateInterval; // Every 3 hours per default
+	var coordParam = "lat=" + mmHelper.lat + "&lon=" + mmHelper.lon;
+	var idParam = "appid=" + mmHelper.apiId;
+	var apiParamString = url + "?" + coordParam + "&" + idParam;
 
-	mmWeather.init = function () {
-		var url = mmHelper.foreCast === true ? mmHelper.forecastUrl : mmHelper.apiUrl;
-		var updateInterval = !mmHelper.updateInterval || mmHelper.updateInterval === "undefined" ? 1080000 : mmHelper.updateInterval; // Every 3 hours per default
-		var coordParam = "lat=" + mmHelper.lat + "&lon=" + mmHelper.lon;
-		var idParam = "appid=" + mmHelper.apiId;
-		var apiParamString = url + "?" + coordParam + "&" + idParam;
+	getWeather(apiParamString);
 
+	setInterval(function () {
 		getWeather(apiParamString);
-
-		setInterval(function () {
-			getWeather(apiParamString);
-		}, updateInterval);
-	};
+	}, updateInterval);
 
 	function getWeather(url) {
-		var jqxhr = $.getJSON(url, function (data) {
+		var weathers = [];
+		var currentWeather = {};
 
-			// Store weather forecast in array of Weather objects
-			if (mmHelper.foreCast === true) {
-				$.each(data.list, function (index, value) {
-					if (index % 8 == 0) {
-						value.name = data.city.name;
-						console.log(value);
-						weathers.push(new Weather(value));
-					}
-				});
+		mm.getJSON(url, function (err, data) {
+			if (err != null) {
+				console.log("Something went wrong: " + err);
 			} else {
-				currentWeather = new Weather(data);
-			}
+				// Store weather forecast in array of Weather objects
+				if (mmHelper.foreCast === true) {
+					data.list.forEach(function (value, index) {
+						if (index % 8 === 0) {
+							value.name = data.city.name;
+							console.log(data.city.name);
+							weathers.push(new Weather(value));
+						}
+					});
+				} else {
+					currentWeather = new Weather(data);
+				}
 
-			displayWeather();
-		}).fail(function () {
-			console.log("error");
+				displayWeather(weathers, currentWeather);
+			}
 		});
 	};
 
@@ -151,16 +150,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 	// Todo: translate currentWeather.description - http://openweathermap.org/weather-conditions
 
-	function displayWeather() {
-		var ul = "";
+	function displayWeather(weathers, currentWeather) {
 
-		cssContainer.html("");
+		cssContainer.html = "";
+		var ul = cssContainer.getElementsByTagName("ul")[0];
+		var df = document.createDocumentFragment();
 
 		if (mmHelper.foreCast === true) {
 
 			cssContainer.append("<h1>" + weathers[0].name + "</h1>");
 
 			for (var i = 0; i < 3; i++) {
+				console.log(weathers[i]);
 				ul = cssContainer.append("<ul id=\"w" + i + "\"></ul>").find("ul#w" + i + "");
 				ul.append("<li>" + weathers[i].getTime() + " " + weathers[i].temp + " C°</li>");
 				ul.append("<li><div class=\"" + weatherIconClass(weathers[i].icon) + " mm-weather-icon mm-right\"></div></li>");
@@ -168,12 +169,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 				cssContainer.append("<hr class=\"mm-clear\" />");
 			}
 		} else {
-			ul = cssContainer.append("<ul></ul>").find("ul");
-			ul.append("<li>" + currentWeather.name + " " + currentWeather.temp + " C°</li>");
-			ul.append("<li><div class=\"" + weatherIconClass(currentWeather.icon) + " mm-weather-icon mm-right\"></div></li>");
-			ul.append("<li class=\"mm-weather-type\">" + weatherType(currentWeather.weather).capitalizeFirstLetter() + "</li>");
+			createLi(cssContainer, "", currentWeather.name + " " + currentWeather.temp + " C°");
+			createLi(cssContainer, weatherIconClass(currentWeather.icon) + " mm-weather-icon mm-right", currentWeather.name + " " + currentWeather.temp + " C°");
+			createLi(cssContainer, "mm-weather-type", weatherType(currentWeather.weather));
+			// ul.append("<li>" + currentWeather.name + " " + currentWeather.temp + " C°</li>");
+			// ul.append("<li><div class=\"" + weatherIconClass(currentWeather.icon) + " mm-weather-icon mm-right\"></div></li>");
+			// ul.append("<li class=\"mm-weather-type\">" + weatherType(currentWeather.weather).capitalizeFirstLetter() + "</li>");
 			//	ul.append("<li class=\"mm-weather-descr\">" + currentWeather.description + "</li>");
 		}
 	};
+
+	function createLi(parent, cssClass, text) {
+
+		var li = document.createElement(li);
+		var t = document.createTextNode(text);
+		li.classList = cssClass;
+
+		li.appendChild(t);
+		parent.appendChild(li);
+	}
 })(mmHelper);
 //# sourceMappingURL=mmWeather.js.map
