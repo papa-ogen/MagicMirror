@@ -59,6 +59,7 @@ h4 {
   background: url("../images/weather-icons.jpg") no-repeat -440px -24px;
   width: 56px;
   height: 40px;
+  animation: opacityfade 3s linear infinite alternate;
 }
 
 .mm-weather-icon-shower-rain {
@@ -99,6 +100,14 @@ h4 {
   100% {
     -moz-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
+  }
+}
+@keyframes opacityfade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
   }
 }
 .mm-clock {
