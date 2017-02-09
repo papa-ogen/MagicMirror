@@ -13,7 +13,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 		this.weather = data.weather[0].main;
 		this.description = data.weather[0].description;
 		this.icon = data.weather[0].icon;
-		this.temp = (data.main.temp - 273.15).toFixed(2);
+		this.temp = (data.main.temp - 273.15).toFixed(1);
 		this.getTime = function () {
 			var d = data.dt_txt !== "undefined" ? data.dt_txt.replace(/\s/g, "T") : "";
 

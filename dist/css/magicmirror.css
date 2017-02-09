@@ -33,12 +33,14 @@ h4 {
 .mm-weather-icon {
   display: block;
   margin: 0.5rem auto;
+  animation-iteration-count: infinite;
 }
 
 .mm-weather-icon-sun {
   background: url("../images/weather-icons.jpg") no-repeat -80px -16px;
   width: 48px;
   height: 48px;
+  animation: rotateicon 5s linear;
 }
 
 .mm-weather-icon-few-cloud {
@@ -89,6 +91,16 @@ h4 {
   height: 32px;
 }
 
+@keyframes rotateicon {
+  0% {
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+  }
+  100% {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+  }
+}
 .mm-clock {
   text-align: center;
   justify-content: center;
