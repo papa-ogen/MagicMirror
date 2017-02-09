@@ -152,48 +152,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 	function displayWeather(weathers, currentWeather) {
 
-		cssContainer.html = "";
-		var ul = cssContainer.getElementsByTagName("ul")[0];
-		ul.innerHTML = "";
-		var df = document.createDocumentFragment();
+		var h1 = cssContainer.getElementsByTagName("h1")[0];
+		var icon = cssContainer.getElementsByTagName("i")[0];
+		var h3 = cssContainer.getElementsByTagName("h3")[0];
 
 		if (mmHelper.foreCast === true) {
+			// Todo:			
+			// cssContainer.append("<h1>" + weathers[0].name + "</h1>");
 
-			cssContainer.append("<h1>" + weathers[0].name + "</h1>");
-
-			for (var i = 0; i < 3; i++) {
-				console.log(weathers[i]);
-				ul = cssContainer.append("<ul id=\"w" + i + "\"></ul>").find("ul#w" + i + "");
-				ul.append("<li>" + weathers[i].getTime() + " " + weathers[i].temp + " C°</li>");
-				ul.append("<li><div class=\"" + weatherIconClass(weathers[i].icon) + " mm-weather-icon mm-right\"></div></li>");
-				ul.append("<li class=\"mm-weather-type\">" + weatherType(weathers[i].weather).capitalizeFirstLetter() + "</li>");
-				cssContainer.append("<hr class=\"mm-clear\" />");
-			}
+			// for(var i = 0; i<3; i++) {
+			//     console.log(weathers[i]);
+			// 	ul = cssContainer.append("<ul id=\"w" + i + "\"></ul>").find("ul#w" + i + "");
+			// 		ul.append("<li>" + weathers[i].getTime() + " " + weathers[i].temp + " C°</li>");
+			// 		ul.append("<li><div class=\"" + weatherIconClass(weathers[i].icon) + " mm-weather-icon mm-right\"></div></li>");
+			// 		ul.append("<li class=\"mm-weather-type\">" + weatherType(weathers[i].weather).capitalizeFirstLetter() + "</li>");	
+			// 	cssContainer.append("<hr class=\"mm-clear\" />");
+			// }
 		} else {
-			createLi(ul, "", currentWeather.name + " " + currentWeather.temp + " C°");
-
-			var div = document.createElement("div");
-			div.classList = weatherIconClass(currentWeather.icon) + " mm-weather-icon mm-right";
-			var li = document.createElement("li");
-			li.appendChild(div);
-			ul.appendChild(li);
-
-			createLi(ul, "mm-weather-type", weatherType(currentWeather.weather));
-			// ul.append("<li>" + currentWeather.name + " " + currentWeather.temp + " C°</li>");
-			// ul.append("<li><div class=\"" + weatherIconClass(currentWeather.icon) + " mm-weather-icon mm-right\"></div></li>");
-			// ul.append("<li class=\"mm-weather-type\">" + weatherType(currentWeather.weather).capitalizeFirstLetter() + "</li>");
-			//	ul.append("<li class=\"mm-weather-descr\">" + currentWeather.description + "</li>");
+			h1.innerHTML = currentWeather.name + " " + currentWeather.temp + " C°";
+			icon.classList = weatherIconClass(currentWeather.icon) + " mm-weather-icon";
+			h3 = weatherType(currentWeather.weather);
 		}
 	};
-
-	function createLi(parent, cssClass, text) {
-
-		var li = document.createElement("li");
-		var t = document.createTextNode(text);
-		li.classList = cssClass;
-
-		li.appendChild(t);
-		parent.appendChild(li);
-	}
 })(mmHelper);
 //# sourceMappingURL=mmWeather.js.map

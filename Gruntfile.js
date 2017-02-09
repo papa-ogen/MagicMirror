@@ -53,7 +53,7 @@ module.exports = function(grunt) {
   //     }
   //   }
   // },
-  watch: {
+  watch: {    
     css: {
         files: ["src/sass/*.scss"],
         tasks: ["sass"],

@@ -1,41 +1,25 @@
 .mm-weather {
-	position: relative;
-	text-align: right;
-}
+  text-align: center;
 
-.mm-weather > div {
-	width: 160px;
-	float: right;
-	text-align: center;	
-}
+  & > h1 {
+	font-size: 2.2rem;	  
+  }
 
-.mm-weather ul {
-	width: 100%;
-	text-align: center;
-}
-
-.mm-weather ul li {
-	display: inline;
-}
-
-.mm-weather-type {
-	line-height: 50px;
-}
-
-.mm-weather-descr {
-	font-size: 0.9em;	
+  & > h3 {
+	margin-top: 5px;
+	font-size: 2rem;
+  }
 }
 
 .mm-weather-icon {
-	margin-top: 7px;
-	margin-right: 14px;
+  display: block;
+  margin: 0.5rem auto;
 }
 
 .mm-weather-icon-sun {
 	background: url('../images/weather-icons.jpg') no-repeat -80px -16px;
 	width: 48px;
 	height: 48px;
-	margin-top: auto;
 }
 
 .mm-weather-icon-few-cloud {
