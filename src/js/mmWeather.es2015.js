@@ -11,7 +11,8 @@
             this.temp = (data.main.temp - 273.15).toFixed(1);
             this.getTime = function () {
                 var d = data.dt_txt !== "undefined" ? data.dt_txt.replace(/\s/g, "T") :  "";
-                
+                var day;
+
                 if(d.length > 0) {
                     day = new Date(d).getDay();
                         return getWeatherDay(day);
@@ -25,7 +26,7 @@
     var url = mmHelper.foreCast === true ? mmHelper.forecastUrl : mmHelper.apiUrl;
     var updateInterval = !mmHelper.updateInterval || mmHelper.updateInterval === "undefined" ? 1080000  :  mmHelper.updateInterval; // Every 3 hours per default
     var coordParam = "lat=" + mmHelper.lat + "&lon=" + mmHelper.lon;
-    var idParam = "appid=" + mmHelper.apiId;
+    var idParam = "appid=" + mmHelper.apiKey;
     var apiParamString = url + "?" + coordParam + "&" + idParam;
 
     getWeather(apiParamString);
@@ -47,7 +48,6 @@
                     data.list.forEach(function( value, index ) {
                         if(index % 8 === 0) {
                             value.name = data.city.name
-                            console.log(data.city.name);
                             weathers.push(new Weather(value));
                         }
                     });
@@ -136,21 +136,46 @@
 		var h3 = cssContainer.getElementsByTagName("h3")[0];
 
 		if(mmHelper.foreCast === true) {
-			// Todo:			
-			// cssContainer.append("<h1>" + weathers[0].name + "</h1>");
-					
-			// for(var i = 0; i<3; i++) {
-            //     console.log(weathers[i]);
-			// 	ul = cssContainer.append("<ul id=\"w" + i + "\"></ul>").find("ul#w" + i + "");
-			// 		ul.append("<li>" + weathers[i].getTime() + " " + weathers[i].temp + " C°</li>");
-			// 		ul.append("<li><div class=\"" + weatherIconClass(weathers[i].icon) + " mm-weather-icon mm-right\"></div></li>");
-			// 		ul.append("<li class=\"mm-weather-type\">" + weatherType(weathers[i].weather).capitalizeFirstLetter() + "</li>");	
-			// 	cssContainer.append("<hr class=\"mm-clear\" />");
-			// }
+			var df = document.createDocumentFragment();
+			var divRow, divCol, divBox, boxH2, boxI, boxH3;
+
+			cssContainer.innerHTML = "";
+
+			h1 = mm._createElement("h1", { 
+				text: weathers[0].name
+			}, cssContainer);
+
+			divRow = mm._createElement("div", { 
+				classList: "row center-xs"
+			}, df);
+
+			for(var i = 0; i<3; i++) {
+				divCol = mm._createElement("div", { 
+					classList: "col-xs"
+				}, divRow);
+
+				divBox = mm._createElement("div", { 
+					classList: "box"				}, divCol);
+
+				boxH2 = mm._createElement("h2", {
+					text: weathers[i].getTime() + " " + weathers[i].temp + " C°"
+				}, divBox);
+
+				boxI = mm._createElement("i", {
+					classList: weatherIconClass(weathers[i].icon) + " mm-weather-icon"
+				}, divBox);
+
+				boxH3 = mm._createElement("h3", {
+					text: weatherType(weathers[i].weather)
+				}, divBox);
+			}
+
+			cssContainer.appendChild(df);
+
 		} else {
 			h1.innerHTML = currentWeather.name + " " + currentWeather.temp + " C°";
 			icon.classList = weatherIconClass(currentWeather.icon) + " mm-weather-icon";
-			h3 = weatherType(currentWeather.weather);
+			h3.innerHTML = weatherType(currentWeather.weather).capitalizeFirstLetter();
 		}
-	};
+	}
 }(mmHelper));

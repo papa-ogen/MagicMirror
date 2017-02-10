@@ -4,6 +4,12 @@ var mmConfig = {
 		lat: "59.3833",
 		long: "17.8333",
 		updateInterval: 360000,
-		foreCast: false
-    }
+		foreCast: true
+    },
+	mmCommute: {
+		apiKey: "b87fe35366e144edb77b1aa99305cd90",
+		lat: "59.3833",
+		long: "17.8333",
+		updateInterval: 360000		
+	}
 };

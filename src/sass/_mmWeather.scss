@@ -1,6 +1,4 @@
 .mm-weather {
-  text-align: center;
-
   & > h1 {
 	font-size: 2.2rem;	  
   }
@@ -14,14 +12,13 @@
 .mm-weather-icon {
   display: block;
   margin: 0.5rem auto;
-	animation-iteration-count: infinite;
 }
 
 .mm-weather-icon-sun {
 	background: url('../images/weather-icons.jpg') no-repeat -80px -16px;
 	width: 48px;
 	height: 48px;
-	animation: rotateicon 5s linear;
+	animation: rotateicon 7s linear infinite;
 }
 
 .mm-weather-icon-few-cloud {
@@ -75,12 +72,12 @@
 
 @keyframes rotateicon {
 	0% { 
-		-moz-transform:rotate(90deg); 
-		-webkit-transform:rotate(90deg);
+		-moz-transform:rotate(180deg); 
+		-webkit-transform:rotate(180deg);
 	}
 	100% {		
-		-moz-transform:rotate(180deg); 
-		-webkit-transform:rotate(180deg); 
+		-moz-transform:rotate(360deg); 
+		-webkit-transform:rotate(360deg); 
 	}
 }
 

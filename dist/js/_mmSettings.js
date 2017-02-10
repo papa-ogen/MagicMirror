@@ -18,6 +18,10 @@ var mmHelper = {
 		apiUrl: "http://api.dryg.net/dagar/v2.1/",
 		updateInterval: 60000
 	},
+	mmCommute: {
+		apiUrl: "http://api.sl.se/api2/TravelplannerV2/",
+		apiId: mmConfig.mmCommute.apiKey,
+	},
 	getJSON: function getJSON(apiUrl, callback) {
 		var xhr = new XMLHttpRequest();
 
