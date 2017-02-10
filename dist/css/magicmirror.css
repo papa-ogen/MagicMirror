@@ -35,6 +35,9 @@ h4 {
   margin-top: 5px;
   font-size: 2rem;
 }
+.mm-weather .box {
+  margin-bottom: 1rem;
+}
 
 .mm-weather-icon {
   display: block;

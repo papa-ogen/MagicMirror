@@ -172,7 +172,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 			for (var i = 0; i < 3; i++) {
 				divCol = mm._createElement("div", {
-					classList: "col-xs"
+					classList: "col-xs-12 col-lg"
 				}, divRow);
 
 				divBox = mm._createElement("div", {
