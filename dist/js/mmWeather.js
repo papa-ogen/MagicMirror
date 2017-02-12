@@ -2,6 +2,8 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+// Todo: translate currentWeather.description - http://openweathermap.org/weather-conditions
+
 (function (mm) {
 	var cssContainer = document.querySelector(".mm-weather");
 	var mmHelper = mm.mmWeather;
@@ -16,7 +18,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 		this.temp = (data.main.temp - 273.15).toFixed(1);
 		this.getTime = function () {
 			var d = data.dt_txt !== "undefined" ? data.dt_txt.replace(/\s/g, "T") : "";
-			var day;
+			var day = void 0;
 
 			if (d.length > 0) {
 				day = new Date(d).getDay();
@@ -99,8 +101,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 	};
 
 	function weatherType(type) {
-		var type = type.toLowerCase();
-		switch (type) {
+		var _type = type.toLowerCase();
+		switch (_type) {
 			case "clear":
 			case "clear sky":
 				return "klart";
@@ -125,7 +127,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 			case "clear":
 				return "klart";
 			default:
-				return type;
+				return _type;
 		}
 	};
 
@@ -148,8 +150,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 		}
 	}
 
-	// Todo: translate currentWeather.description - http://openweathermap.org/weather-conditions
-
 	function displayWeather(weathers, currentWeather) {
 
 		var h1 = cssContainer.getElementsByTagName("h1")[0];
@@ -158,7 +158,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 		if (mmHelper.foreCast === true) {
 			var df = document.createDocumentFragment();
-			var divRow, divCol, divBox, boxH2, boxI, boxH3;
+			var divRow = void 0,
+			    divCol = void 0,
+			    divBox = void 0,
+			    boxH2 = void 0,
+			    boxI = void 0,
+			    boxH3 = void 0;
 
 			cssContainer.innerHTML = "";
 

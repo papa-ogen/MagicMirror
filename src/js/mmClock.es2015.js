@@ -1,9 +1,9 @@
 (function(mm){
     class Clock {
         setTime() {
-            var d = new Date();
-            var hours = d.getHours().toString();
-            var minutes = d.getMinutes().toString();
+            let d = new Date();
+            let hours = d.getHours().toString();
+            let minutes = d.getMinutes().toString();
             
             setTimeout(() => { this.setTime(); }, 1000);
             

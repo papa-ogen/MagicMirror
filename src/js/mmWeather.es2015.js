@@ -1,6 +1,8 @@
+// Todo: translate currentWeather.description - http://openweathermap.org/weather-conditions
+
 (function(mm) { 
-    var cssContainer = document.querySelector(".mm-weather");
-    var mmHelper = mm.mmWeather;
+    let cssContainer = document.querySelector(".mm-weather");
+    let mmHelper = mm.mmWeather;
 
     class Weather {
         constructor(data) {
@@ -10,8 +12,8 @@
             this.icon = data.weather[0].icon;
             this.temp = (data.main.temp - 273.15).toFixed(1);
             this.getTime = function () {
-                var d = data.dt_txt !== "undefined" ? data.dt_txt.replace(/\s/g, "T") :  "";
-                var day;
+                let d = data.dt_txt !== "undefined" ? data.dt_txt.replace(/\s/g, "T") :  "";
+                let day;
 
                 if(d.length > 0) {
                     day = new Date(d).getDay();
@@ -23,11 +25,11 @@
         }
     }
 
-    var url = mmHelper.foreCast === true ? mmHelper.forecastUrl : mmHelper.apiUrl;
-    var updateInterval = !mmHelper.updateInterval || mmHelper.updateInterval === "undefined" ? 1080000  :  mmHelper.updateInterval; // Every 3 hours per default
-    var coordParam = "lat=" + mmHelper.lat + "&lon=" + mmHelper.lon;
-    var idParam = "appid=" + mmHelper.apiKey;
-    var apiParamString = url + "?" + coordParam + "&" + idParam;
+    let url = mmHelper.foreCast === true ? mmHelper.forecastUrl : mmHelper.apiUrl;
+    let updateInterval = !mmHelper.updateInterval || mmHelper.updateInterval === "undefined" ? 1080000  :  mmHelper.updateInterval; // Every 3 hours per default
+    let coordParam = "lat=" + mmHelper.lat + "&lon=" + mmHelper.lon;
+    let idParam = "appid=" + mmHelper.apiKey;
+    let apiParamString = url + "?" + coordParam + "&" + idParam;
 
     getWeather(apiParamString);
 
@@ -36,8 +38,8 @@
     }, updateInterval); 
 
 	function getWeather(url) {
-        var weathers = [];
-	    var currentWeather = {};
+        let weathers = [];
+	    let currentWeather = {};
 
         mm.getJSON(url, function(err, data) {
             if (err != null) {
@@ -96,8 +98,8 @@
 	};
 	
 	function weatherType(type) {
-		var type = type.toLowerCase();
-		switch(type) {
+		let _type = type.toLowerCase();
+		switch(_type) {
 			case "clear":
 			case "clear sky": return "klart";
 			case "few clouds": return "lite molnigt";
@@ -111,7 +113,7 @@
 			case "mist": return "dimma";
             case "clear": return "klart";
 			default:
-				return type;
+				return _type;
 		}
 	};
 	
@@ -127,17 +129,15 @@
 		}
 	}
 	
-	// Todo: translate currentWeather.description - http://openweathermap.org/weather-conditions
-	
 	function displayWeather(weathers, currentWeather) {
 
-        var h1 = cssContainer.getElementsByTagName("h1")[0];
-		var icon = cssContainer.getElementsByTagName("i")[0];
-		var h3 = cssContainer.getElementsByTagName("h3")[0];
+        let h1 = cssContainer.getElementsByTagName("h1")[0];
+		let icon = cssContainer.getElementsByTagName("i")[0];
+		let h3 = cssContainer.getElementsByTagName("h3")[0];
 
 		if(mmHelper.foreCast === true) {
-			var df = document.createDocumentFragment();
-			var divRow, divCol, divBox, boxH2, boxI, boxH3;
+			let df = document.createDocumentFragment();
+			let divRow, divCol, divBox, boxH2, boxI, boxH3;
 
 			cssContainer.innerHTML = "";
 

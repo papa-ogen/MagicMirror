@@ -1,31 +1,38 @@
+// API must communicate server side so this module is disabled for now
+
 (function(mm) {
     let mmHelper = mm.mmCommute;
     let cssContainer = document.querySelector(".mm-commute");
 
     let params = {
-        originCoordLat: "", 
-        originCoordLong: "", 
-        originCoordName: "",
-        destCoordLat: "", 
-        destCoordLong: "", 
-        destCoordName: ""
+        originCoordLat: "59.3833", 
+        originCoordLong: "17.8333", 
+        originCoordName: "Tellusvägen",
+        destCoordLat: "59,3308", 
+        destCoordLong: "18,0631", 
+        destCoordName: "T-centralen"
     };
 
-    // Trip example: http://api.sl.se/api2/TravelplannerV2/trip.<FORMAT>?key=<DIN API NYCKEL>&parametrar
-    let url =  mmHelper.apiUrl + "trip.json?key=" + mmHelper.apiKey;
+    let paramStr = "&originCoordLat=" + params.originCoordLat;
+    paramStr += "&originCoordLong=" + params.originCoordLong;
+    paramStr += "&originCoordName=" + params.originCoordName;
+    paramStr += "&destCoordLat=" + params.destCoordLat;
+    paramStr += "&destCoordLong=" + params.destCoordLong;
+    paramStr += "&destCoordName=" + params.destCoordName;
 
-    mm.getJSON(url, function(err, data) {
-        if (err != null) {
-            console.log("Something went wrong: " + err);
-        } else {
-           console.log(data);
-        }
-    });    
+    let url =  mmHelper.apiUrl + "trip.json?key=" + mmHelper.apiKey + paramStr;
 
+    // mm.getJSON(url, function(err, data) {
+    //     if (err != null) {
+    //         console.log("Something went wrong: " + err);
+    //     } else {
+    //        console.log(data);
+    //     }
+    // });    
 
-// https://www.trafiklab.se/api/sl-reseplanerare-2/dokumentation-sl-reseplanerare-2
-// https://www.trafiklab.se/api/sl-reseplanerare/dokumentation-sl-reseplanerare
-    // console.log(mmHelper.apiUrl, mmHelper.apiKey);
+    console.log(url, mmHelper.apiKey);
 
     cssContainer.innerHTML = "SL API";
 })(mmHelper);
+
+// http://api.sl.se/api2/TravelplannerV2/trip.json?key=b87fe35366e144edb77b1aa99305cd90&originCoordLat=59.3833&originCoordLong=17.8333&originCoordName=Tellusv%C3%A4gen&destCoordLat=59,3308&destCoordLong=18,0631&destCoordName=T-centralen
