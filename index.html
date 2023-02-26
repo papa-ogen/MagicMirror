@@ -1,82 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    
-    <title>Magic Mirror</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="dist/css/flexboxgrid.min.css">
-    <link rel="stylesheet" href="dist/css/magicmirror.css">
-
-</head>
-<body>
-
- <div class="row">
-    <div class="col-xs-12
-                col-sm-8
-                col-md-6
-                col-lg-4 mm-left">
-        <div class="row mm-module center-xs start-lg">
-            <div class="col-lg-6">
-                <section class="box mm-clock">
-                    <time>
-                        <div class="mm-hour">18</div>
-                        <span class="mmClock-divider">:</span>
-                        <div class="mm-minute">05</div>
-                    </time>
-                    <h3 class="mm-datetime">Måndag, Maj 25</h3>
-                    <h4 class="mm-names">Pelle, Per</h4>
-                </section>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12
-                col-sm-8
-                col-md-6
-                col-lg-4 mm-center">
-        <div class="box">
-
-        </div>
-    </div>
-    <div class="col-xs-12
-                col-sm-8
-                col-md-6
-                col-lg-4 mm-right">
-        <div class="row mm-module center-xs end-lg">
-            <div class="col-xs-12">
-                <section class="box mm-weather">
-                    <h1>City +0 C°</h1>
-                    <div class="row center-xs">
-                        <div class="col-xs-6">
-                            <div class="box">
-                                <i class="mm-weather-icon mm-weather-icon-sun"></i>
-                            </div>
-                        </div>
-                    </div>                    
-                    <h3>Klart</h3>
-                </section>
-            </div>
-        </div>
-
-        <div class="row mm-module center-xs end-lg">
-            <div class="col-xs-12">
-                <section class="box mm-tbd">
-                    <h1></h1>
-                    <div class="row center-xs">
-                        <div class="box">
-                        </div>
-                    </div>                    
-                </section>
-            </div>
-        </div>        
-    </div>
-  </div>
-
-  <script src="data/config.js"></script>
-  <script src="dist/js/mmSettings.js"></script>
-  <script src="dist/js/mmClock.js"></script>
-  <script src="dist/js/mmWeather.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
