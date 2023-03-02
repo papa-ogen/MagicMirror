@@ -1,11 +1,20 @@
 import { Button, Form, Input, Page, Paragraph } from "@papa-ogen/craven-ui";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { signIn } from "../firebase";
+import { AuthContext } from "./AuthContext";
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const onSubmit = () => {
+    setIsLoading(true);
+    signIn(email, password)
+      .then(() => {
+        setIsLoading(false);
+        console.log("logged in");
+      })
+      .catch(() => console.log("ERROR"));
     console.log("Loggin in");
   };
   return (
@@ -19,6 +28,7 @@ const LoginForm = () => {
             onChange={(event) => setEmail(event.currentTarget.value)}
             type="text"
             placeholder="Email Address"
+            disabled={isLoading}
           />
           <Input
             id="password"
@@ -27,8 +37,11 @@ const LoginForm = () => {
             onChange={(event) => setPassword(event.currentTarget.value)}
             type="password"
             placeholder="Password"
+            disabled={isLoading}
           />
-          <Button onClick={onSubmit}>Logga in</Button>
+          <Button onClick={onSubmit} disabled={isLoading}>
+            Logga in
+          </Button>
         </Form>
       </div>
     </Page>
@@ -36,9 +49,9 @@ const LoginForm = () => {
 };
 
 const Login = () => {
-  const loggedIn = false;
+  const user = useContext(AuthContext);
 
-  if (!loggedIn) return <LoginForm />;
+  if (!user) return <LoginForm />;
 
   return (
     <Page title="Inloggad!">
